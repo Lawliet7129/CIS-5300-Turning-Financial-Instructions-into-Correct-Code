@@ -1,14 +1,143 @@
 \documentclass{article}
-\usepackage{graphicx} % Required for inserting images
+\usepackage{iclr2027_conference,times}
+\input{math_commands.tex}
+
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{amsthm}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+\iclrfinalcopy
 
 \title{CIS 5300: Turning Financial Instructions into Correct Code}
-\author{bkoo27 }
-\date{October 2026}
+
+\author{Bailey Koo \\
+\texttt{bkoo27@upenn.edu}
+\And
+William Huang \\
+\texttt{whuang28@upenn.edu}
+\AND
+Yujing Li \\
+\texttt{yujingli@upenn.edu}
+\And
+Jan Mej\'{i}a-Toro \\
+\texttt{janmt@upenn.edu}
+}
 
 \begin{document}
-
 \maketitle
+\lhead{CIS 5300 Project Proposal}
 
-\section{Introduction}
+\section{Research Question and Motivation}
+
+Recent advances in large language models (LLMs) have expanded
+their role in quantitative investment research.
+AlphaBench \citep{luo2026alphabench} evaluates LLMs on generating,
+evaluating, and searching for formulaic trading signals, while
+Alpha-GPT \citep{wang2025alphagpt} translates researchers' ideas
+into alpha expressions and reports a top 10 global ranking in
+Stage 2 of WorldQuant's 2024 International Quant Championship.
+These developments motivate assistants that faithfully implement
+researchers' intended calculations. However, small distinctions such as
+``including this month'' versus ``skipping this month,'' or
+``average'' versus ``compound,'' can change results without
+causing a runtime error. We ask:
+How reliably can a coding LLM translate financial
+instructions into numerically correct programs, and can
+structured interpretation or targeted execution feedback improve
+its reliability?
+We will study whether models preserve meaning under paraphrases
+and respond correctly to small changes in requirements.
+
+\section{Proposed Study}
+
+We will build a benchmark using public monthly industry and
+portfolio returns from
+\href{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html}
+{Kenneth French's Data Library}.
+Its base tasks will span rolling returns, risk measures,
+portfolio combinations, and industry rankings. Following
+DS-1000's perturbation-based design \citep{lai2023ds1000},
+each task will have an original instruction, a meaning-preserving
+paraphrase, and a minimally edited instruction that changes one
+requirement, yielding 54 specifications. The model will receive
+the English instruction, a schema and series registry, and up to
+two demonstrations, and output a pandas/NumPy function,
+\texttt{compute(panel, queries)}. The executor will supply decimal
+monthly returns and requested series--month pairs; the function
+must return one value, or a missing value when required, per
+requested pair. We plan to use a quantized local
+Qwen2.5-Coder-7B-Instruct model without fine-tuning. Related task
+families will remain within one split, with four demonstration,
+four development, and ten test bases.
+
+We will compare instruction retrieval and reuse, direct
+generation, and an adapted Self-Debugging baseline
+\citep{chen2024selfdebug} that revises code using execution
+feedback and a natural-language explanation. Two extensions will
+test extracting a structured record of inputs, units, windows,
+and missing-value rules before coding, and replacing ordinary
+feedback examples with targeted cases that expose specific errors.
+The three feedback-based methods will use the same model,
+at most three calls, and two visible execution cases; targeted
+feedback will reuse the Self-Debugging baseline's initial code.
+Independently checked reference implementations and hand-worked
+examples will supply expected outputs. A specification will pass
+only if its program returns exactly the requested keys, matches
+missing-value locations, and reproduces every finite reference
+value $y$ within $10^{-8}+10^{-6}|y|$ on real data and withheld
+synthetic cases. These cases will exercise missing months, ties,
+and window boundaries; perturbing future returns will check that
+earlier outputs remain unchanged. We will tune on development
+tasks and keep final hidden cases outside feedback. Evaluation
+will report accuracy over the 30 test variants, success on
+paraphrase and changed-requirement pairs, execution success,
+error categories, and inference cost.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{
+  @{}
+  >{\raggedright\arraybackslash}p{0.44\linewidth}
+  >{\raggedright\arraybackslash}p{0.21\linewidth}
+  r
+  @{}
+}
+\toprule
+\textbf{Instruction for September}
+& \textbf{Months used}
+& \textbf{Expected return} \\
+\midrule
+Compound the last three months, including September.
+& July--September
+& $22.364\%$ \\
+Compound the last three months, skipping September.
+& June--August
+& $4.0094\%$ \\
+\bottomrule
+\end{tabular}
+\caption{
+Illustrative example with invented returns:
+June $+2\%$, July $-1\%$, August $+3\%$, and September $+20\%$.
+Compounding multiplies $(1+r)$ across the selected months and
+subtracts 1. Both implementations can execute successfully,
+but the changed instruction requires a different window and output.
+}
+\label{tab:example}
+\end{table}
+
+\bibliography{proposal}
+\bibliographystyle{iclr2027_conference}
 
 \end{document}

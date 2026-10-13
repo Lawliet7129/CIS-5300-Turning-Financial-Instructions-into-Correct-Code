@@ -1,0 +1,87 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Botta et~al.(2025)Botta, Li, Mehta, Ash, Zhang, and
+  Risteski]{botta2025query}
+Edoardo Botta, Yuchen Li, Aashay Mehta, Jordan~T. Ash, Cyril Zhang, and Andrej
+  Risteski.
+\newblock On the query complexity of verifier-assisted language generation.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2025.
+\newblock arXiv:2502.12123.
+
+\bibitem[Corbett et~al.(2026)Corbett, Sood, Tzatzopoulou, Ramesh, and
+  Dodwell]{corbett2026guided}
+Andrew Corbett, Archit Sood, Anna Tzatzopoulou, Sai-Aakash Ramesh, and Tim
+  Dodwell.
+\newblock Boosting inference with guided reasoning: Stochastic exploration for
+  recursive models.
+\newblock arXiv:2605.25230, 2026.
+
+\bibitem[Golowich et~al.(2026)Golowich, Chen, Rohatgi, Singhal, Domingo-Enrich,
+  Foster, and Krishnamurthy]{golowich2026reject}
+Noah Golowich, Fan Chen, Dhruv Rohatgi, Raghav Singhal, Carles Domingo-Enrich,
+  Dylan~J. Foster, and Akshay Krishnamurthy.
+\newblock Reject, resample, repeat: Understanding parallel reasoning in
+  language model inference.
+\newblock arXiv:2603.07887, 2026.
+
+\bibitem[Hao et~al.(2024)Hao, Sukhbaatar, Su, Li, Hu, Weston, and
+  Tian]{hao2024coconut}
+Shibo Hao, Sainbayar Sukhbaatar, DiJia Su, Xian Li, Zhiting Hu, Jason Weston,
+  and Yuandong Tian.
+\newblock Training large language models to reason in a continuous latent
+  space.
+\newblock arXiv:2412.06769, 2024.
+
+\bibitem[Huang et~al.(2025)Huang, Block, Liu, Jiang, Krishnamurthy, and
+  Foster]{huang2025bestofn}
+Audrey Huang, Adam Block, Qinghua Liu, Nan Jiang, Akshay Krishnamurthy, and
+  Dylan~J. Foster.
+\newblock Is best-of-{N} the best of them? {C}overage, scaling, and optimality
+  in inference-time alignment.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2025.
+\newblock arXiv:2503.21878.
+
+\bibitem[Kalavasis et~al.(2024)Kalavasis, Mehrotra, and
+  Velegkas]{kalavasis2024breadth}
+Alkis Kalavasis, Anay Mehrotra, and Grigoris Velegkas.
+\newblock On characterizations for language generation: Interplay of
+  hallucinations, breadth, and stability.
+\newblock arXiv:2412.18530, 2024.
+
+\bibitem[Kleinberg \& Mullainathan(2024)Kleinberg and
+  Mullainathan]{kleinberg2024generation}
+Jon Kleinberg and Sendhil Mullainathan.
+\newblock Language generation in the limit.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2024.
+
+\bibitem[Rohatgi et~al.(2026)Rohatgi, Shetty, Saless, Li, Moitra, Risteski, and
+  Foster]{rohatgi2026taming}
+Dhruv Rohatgi, Abhishek Shetty, Donya Saless, Yuchen Li, Ankur Moitra, Andrej
+  Risteski, and Dylan~J. Foster.
+\newblock Taming imperfect process verifiers: A sampling perspective on
+  backtracking.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2026.
+\newblock arXiv:2510.03149.
+
+\bibitem[Tu et~al.(2026)Tu, Fu, Yu, Tang, Kang, Qin, Zhang, and
+  Gu]{tu2026latentflow}
+Guancheng Tu, Xiangjun Fu, Suhao Yu, Yao Tang, Haoqiang Kang, Lianhui Qin,
+  Yizhe Zhang, and Jiatao Gu.
+\newblock Latent reasoning with normalizing flows.
+\newblock arXiv:2606.06447, 2026.
+
+\bibitem[You et~al.(2026)You, Li, Liu, Wang, Nie, and Li]{you2026parallel}
+Runyang You, Yongqi Li, Meng Liu, Wenjie Wang, Liqiang Nie, and Wenjie Li.
+\newblock Parallel test-time scaling for latent reasoning models.
+\newblock In \emph{Annual Meeting of the Association for Computational
+  Linguistics (ACL)}, 2026.
+\newblock arXiv:2510.07745.
+
+\end{thebibliography}
